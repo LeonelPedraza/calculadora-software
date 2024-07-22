@@ -75,7 +75,7 @@
             @endif
 
             <div class="flex items-center justify-end w-full mt-4">
-                <x-button class="flex items-center justify-center w-full text-lg text-center bg-pink-500">
+                <x-button class="flex items-center justify-center w-full text-lg text-center bg-pink-500 focus:bg-pink-600 focus:outline-none focus:border-none">
                     {{ __('Registrarme') }}
                 </x-button>
             </div>

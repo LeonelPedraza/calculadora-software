@@ -39,7 +39,7 @@
             </div>
 
             <div class="w-full mt-4">
-                <x-button class="flex items-center justify-center w-full text-lg text-center bg-pink-500">
+                <x-button class="flex items-center justify-center w-full text-lg text-center bg-pink-500 focus:bg-pink-600 focus:outline-none focus:border-none">
                     {{ __('Iniciar sesión') }}
                 </x-button>
             </div>
