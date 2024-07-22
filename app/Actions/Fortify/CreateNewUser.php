@@ -23,7 +23,11 @@ class CreateNewUser implements CreatesNewUsers
     {
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'country' => ['required', 'string', 'max:255'],
+            'movile_phone' => ['required', 'string', 'regex:/^\+?[0-9]{8,15}$/'],
+            'home_phone' => ['string', 'regex:/^\+?[0-9]{8,15}$/'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
@@ -31,7 +35,11 @@ class CreateNewUser implements CreatesNewUsers
         return DB::transaction(function () use ($input) {
             return tap(User::create([
                 'name' => $input['name'],
+                'last_name' => $input['last_name'],
                 'email' => $input['email'],
+                'country' => $input['country'],
+                'movile_phone' => $input['movile_phone'],
+                'home_phone' => $input['home_phone'] ?? null,
                 'password' => Hash::make($input['password']),
             ]), function (User $user) {
                 $this->createTeam($user);

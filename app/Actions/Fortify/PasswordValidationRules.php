@@ -13,7 +13,15 @@ trait PasswordValidationRules
      */
     protected function passwordRules(): array
     {
-        $pass = new Password(8);
-        return $pass->letters()->numbers()->symbols()->mixedCase()->required();
+        return [
+            'required',
+            'string',
+            'min:8', // Longitud mínima de 8 caracteres
+            'regex:/[a-z]/', // Debe contener al menos una letra minúscula
+            'regex:/[A-Z]/', // Debe contener al menos una letra mayúscula
+            'regex:/[0-9]/', // Debe contener al menos un número
+            'regex:/[@$!%*#?&]/', // Debe contener al menos un carácter especial
+            'confirmed'
+        ];
     }
 }
